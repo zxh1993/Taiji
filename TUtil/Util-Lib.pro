@@ -21,7 +21,7 @@ LIBS += \
     -lPocoFoundation \
 
 unix {
-    target.path = ../../Lib
+    target.path = ../Lib
     INSTALLS += target
     headfile.files = *.h
     headfile.path = /usr/local/include/Taiji/TUtil
