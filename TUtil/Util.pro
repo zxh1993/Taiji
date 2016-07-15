@@ -19,6 +19,8 @@ INCLUDEPATH += \
 
 LIBS += \
     -lPocoFoundation \
+    -lPocoNet \
+    -lpthread
 
 unix {
     target.path = /usr/local/lib
@@ -33,10 +35,16 @@ unix {
 HEADERS += \
     CLog.h \
     CLogs.h \
-    CSingleton.h
+    CSingleton.h \
+    CApplication.h \
+    CTimingThread.h \
+    CHttpServer.h
 
 SOURCES += \
     CLog.cpp \
-    CLogs.cpp
+    CLogs.cpp \
+    CApplication.cpp \
+    CTimingThread.cpp \
+    CHttpServer.cpp
 
 
