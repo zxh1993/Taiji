@@ -38,13 +38,15 @@ HEADERS += \
     CSingleton.h \
     CApplication.h \
     CTimingThread.h \
-    CHttpServer.h
+    CHttpServer.h \
+    CHTTPRequestHandlerFactory.h
 
 SOURCES += \
     CLog.cpp \
     CLogs.cpp \
     CApplication.cpp \
     CTimingThread.cpp \
-    CHttpServer.cpp
+    CHttpServer.cpp \
+    CHTTPRequestHandlerFactory.cpp
 
 
