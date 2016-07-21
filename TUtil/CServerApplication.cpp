@@ -1,4 +1,4 @@
-#include "CApplication.h"
+#include "CServerApplication.h"
 
 #include <unistd.h>
 #include <sys/stat.h>
@@ -17,18 +17,18 @@ using std::string;
 using namespace Taiji::TUtil;
 
 
-CApplication::CApplication()
+CServerApplication::CServerApplication()
     :_helpRequested(false)
 {
 
 }
 
-CApplication::~CApplication()
+CServerApplication::~CServerApplication()
 {
 
 }
 
-void CApplication::initialize(Application &self)
+void CServerApplication::initialize(Application &self)
 {
     try
     {
@@ -43,7 +43,7 @@ void CApplication::initialize(Application &self)
             exit(Application::EXIT_CONFIG);
         }
 
-        init();
+        _init();
 
 
     }catch( Poco::Exception& e )
@@ -60,35 +60,36 @@ void CApplication::initialize(Application &self)
 
 
 
-void CApplication::defineOptions(Poco::Util::OptionSet &options)
+void CServerApplication::defineOptions(Poco::Util::OptionSet &options)
 {
     ServerApplication::defineOptions(options);
 
     options.addOption(Option("help", "h","Display help information on command line arguments")
                       .required(false).repeatable(false)
-                      .callback(OptionCallback<CApplication>(this, &CApplication::_handleHelp)));
+                      .callback(OptionCallback<CServerApplication>(this, &CServerApplication::_handleHelp)));
 
     options.addOption(Option("version", "v", "Display application version")
                       .required(false).repeatable(false)
-                      .callback(OptionCallback<CApplication>(this, &CApplication::_version)));
+                      .callback(OptionCallback<CServerApplication>(this, &CServerApplication::_version)));
 
     options.addOption(Option("stop", "s", "Stop server")
                       .required(false).repeatable(false)
-                      .callback(OptionCallback<CApplication>(this, &CApplication::_stopProcess)));
+                      .callback(OptionCallback<CServerApplication>(this, &CServerApplication::_stopProcess)));
 
 }
 
 
 
 
-int CApplication::main(const Poco::Util::Application::ArgVec &)
+int CServerApplication::main(const Poco::Util::Application::ArgVec &)
 {
     if ( _helpRequested )
     {
         return 0;
     }
 
-    start();
+    _start();
+
     while (true)
     {
         ESIGNAL sig = _waitForSignal();
@@ -97,14 +98,14 @@ int CApplication::main(const Poco::Util::Application::ArgVec &)
             break;
         }
     }
-    stop();
+    _stop();
 
     return Application::EXIT_OK;
 }
 
 
 
-void CApplication::uninitialize()
+void CServerApplication::uninitialize()
 {
     if ( _helpRequested )
     {
@@ -114,7 +115,7 @@ void CApplication::uninitialize()
 }
 
 
-bool CApplication::_addConfig( const std::string& path, enum  ConfigPriority priority  )
+bool CServerApplication::_addConfig( const std::string& path, enum  ConfigPriority priority  )
 {
     Poco::Path confPath( path );
     string ext = confPath.getExtension();
@@ -131,7 +132,7 @@ bool CApplication::_addConfig( const std::string& path, enum  ConfigPriority pri
 }
 
 
-CApplication::ESIGNAL CApplication::_waitForSignal()
+CServerApplication::ESIGNAL CServerApplication::_waitForSignal()
 {
     sigset_t sset;
     sigemptyset(&sset);
@@ -156,14 +157,14 @@ CApplication::ESIGNAL CApplication::_waitForSignal()
 
 
 
-void CApplication::_version(const std::string&, const std::string&)
+void CServerApplication::_version(const std::string&, const std::string&)
 {
     _helpRequested = true;
     stopOptionsProcessing();
 }
 
 
-void CApplication::_handleHelp(const std::string& , const std::string &)
+void CServerApplication::_handleHelp(const std::string& , const std::string &)
 {
     _helpRequested = true;
     Poco::Util::HelpFormatter helpFormatter(options());
@@ -174,7 +175,7 @@ void CApplication::_handleHelp(const std::string& , const std::string &)
     stopOptionsProcessing();
 }
 
-void CApplication::_stopProcess(const string &, const string &)
+void CServerApplication::_stopProcess(const string &, const string &)
 {
      stopOptionsProcessing();
 }

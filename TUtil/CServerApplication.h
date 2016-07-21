@@ -1,9 +1,8 @@
-#ifndef CAPPLICATION_H
-#define CAPPLICATION_H
+#ifndef CSERVERAPPLICATION_H
+#define CSERVERAPPLICATION_H
 
 #include <Poco/Util/ServerApplication.h>
 
-///< config file path
 #define DEFAULT_CONG_PATH 				"./etc/conf.json"
 
 namespace Taiji
@@ -11,27 +10,24 @@ namespace Taiji
 
 namespace TUtil {
 
-class CApplication : public Poco::Util::ServerApplication
+class CServerApplication : public Poco::Util::ServerApplication
 {
-   public:
+public:
     typedef std::list<Poco::Util::AbstractConfiguration*> ConfList;
 
-    /**
-      *信号类型
-      */
     typedef enum
-   {
+    {
         SIG_TERM ,			///< 终止信号
         SIG_RELOAD			///< 重新加载配置信号，使用系统　SIGUSR1
-   } ESIGNAL;
+    } ESIGNAL;
 
-    CApplication();
-    ~CApplication();
+    CServerApplication();
+    ~CServerApplication();
 
 protected:
-    virtual void init() = 0;
-    virtual void start() = 0;
-    virtual void stop() = 0;
+    virtual void _init() = 0;
+    virtual void _start() = 0;
+    virtual void _stop() = 0;
 
 
     ////////////////////////////////////////////////////框架需要的函数/////////////////////////////////////////////////////////////
@@ -65,7 +61,7 @@ protected:
     virtual void _handleHelp(const std::string &, const std::string &);
 
     virtual void _stopProcess(const std::string &, const std::string &);
-private:
+
     ConfList _cfgList;													///< 存放所有的日志对象地址
     bool _helpRequested;												///< 是否是帮助指令
 };
@@ -73,4 +69,4 @@ private:
 
 }
 }
-#endif // CAPPLICATION_H
+#endif // CSERVERAPPLICATION_H

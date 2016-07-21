@@ -25,7 +25,7 @@
 #include <Poco/AutoPtr.h>
 #include <Poco/Thread.h>
 
-
+#include <sstream>
 
 namespace Taiji
 {
@@ -36,10 +36,10 @@ namespace TUtil {
 //
 
 
-
+std::atomic_long CLog::_longNum(0);
  //一些默认值常量
-const std::string CLog::HEAD_FMT			  =		"[**%s**] [tid:%lu] [class:%s] [func:%s] MSG:";
-const std::string CLog::HEAD_FMT_INDEX		  =		"[**%s**] [tid:%lu] [class:%s] [func:%s] [%s:%s] MSG:";
+const std::string CLog::HEAD_FMT			  =		"[**%s**] [class:%s] [func:%s] MSG:";
+const std::string CLog::HEAD_FMT_INDEX		  =		"[**%s**] [class:%s] [func:%s] [%s:%s] MSG:";
 const std::string CLog::DEFAULT_LOG_ROTATION  =		"1 days";
 const std::string CLog::DEFAULT_LOG_PURGEAGE  =		"1 months";
 const std::string CLog::DEFAULT_LOG_LEVEL	  =		"information";
@@ -50,6 +50,14 @@ CLog::CLog(const std::string& dir, const std::string& file, const std::string& n
     _dir( dir ),_file( file ),_name( name ),_level( level ),_rotation( rotation),_purgeAge( purgeAge )
 {
     initLog( _dir, _file, _name, _level, _rotation,_purgeAge );
+}
+
+std::string CLog::getLogNumber()
+{
+    ++_longNum;
+    std::stringstream ss;
+    ss << _longNum;
+    return ss.str();
 }
 
 
@@ -311,16 +319,16 @@ std::string CLog::__getLogHead(ELogType type, const std::string &className, cons
         throw std::invalid_argument( "invalid type" );
     }
     //获取线程 id
-    Poco::Thread::TID tid = Poco::Thread::currentTid();
+    //Poco::Thread::TID tid = Poco::Thread::currentTid();
     //获取日志头
     std::string head;
     if ("" != indexName)
     {
-        Poco::format(head, HEAD_FMT_INDEX, stype, tid, className, func, indexName, indexValue);
+        Poco::format(head, HEAD_FMT_INDEX, stype, className, func, indexName, indexValue);
     }
     else
     {
-        Poco::format(head, HEAD_FMT, stype, tid, className, func);
+        Poco::format(head, HEAD_FMT, stype, className, func);
     }
 
     return head;

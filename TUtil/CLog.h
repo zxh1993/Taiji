@@ -17,7 +17,7 @@
 #include <string>
 #include <Poco/Logger.h>
 #include "Taiji/TExcept/Except.h"
-
+#include <atomic>
 
 namespace Taiji
 {
@@ -25,8 +25,8 @@ namespace Taiji
 namespace TUtil {
 
 
-TAIJI_NEW_EXCEPTION( ExceptLog, ExceptTUtil );
-TAIJI_NEW_EXCEPTION( ExceptNullptr, ExceptLog );
+TAIJI_NEW_EXCEPTION(ExceptLog, ExceptTUtil);
+TAIJI_NEW_EXCEPTION(ExceptNullptr, ExceptLog);
 
 
 /**
@@ -84,6 +84,8 @@ public:
          const std::string& purgeAge=DEFAULT_LOG_PURGEAGE);
     CLog( CLog& ) = delete;
     CLog& operator ==( const CLog& ) = delete;
+
+    static std::string getLogNumber();
 
     /**
      * @brief __initLog 创建一个日志
@@ -215,6 +217,7 @@ private:
         //要在日志以前插入日志头
         return "%s" + fmt;
     }
+    static std::atomic_long _longNum;
 
 };
 

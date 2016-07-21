@@ -36,17 +36,17 @@ HEADERS += \
     CLog.h \
     CLogs.h \
     CSingleton.h \
-    CApplication.h \
     CTimingThread.h \
     CHttpServer.h \
-    CHTTPRequestHandlerFactory.h
+    CHTTPRequestHandlerFactory.h \
+    CServerApplication.h
 
 SOURCES += \
     CLog.cpp \
     CLogs.cpp \
-    CApplication.cpp \
     CTimingThread.cpp \
     CHttpServer.cpp \
-    CHTTPRequestHandlerFactory.cpp
+    CHTTPRequestHandlerFactory.cpp \
+    CServerApplication.cpp
 
 
