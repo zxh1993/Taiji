@@ -10,18 +10,19 @@
 * @date: 2016/5/13
 */
 
-#ifndef CUTILUNITTEST_H
-#define CUTILUNITTEST_H
-
+#ifndef CUTILTEST_H
+#define CUTILTEST_H
+#include "Taiji/TUtil/CLogs.h"
+#include "Taiji/TUtil/CSingleton.h"
 
 #include <gtest/gtest.h>
 
 
-class CUtilUnitTest : public testing::Test
+class CUtilTest : public testing::Test
 {
 public:
-    CUtilUnitTest() = default;
-    ~CUtilUnitTest() = default;
+    CUtilTest() = default;
+    ~CUtilTest() = default;
 
 
     static void SetUpTestCase( void );
@@ -29,4 +30,4 @@ public:
 
 };
 
-#endif // CUTILUNITTEST_H
+#endif // CUTILTEST_H

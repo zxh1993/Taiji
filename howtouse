@@ -1,8 +1,0 @@
-将Taiji移到/tmp下
-cd Taiji
-tar -xvf build.tar.gz
-cd build
-make
-sudo make install
-生成的Lib可以放到任何目录下使用
-头文件在/usr/local/include/Taiji/

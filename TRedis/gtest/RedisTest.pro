@@ -10,7 +10,6 @@ LIBS += \
         -lgtest_main \
         -lpthread \
         -lTaijiRedis \
-        -lTaijiExcept
 
 
 

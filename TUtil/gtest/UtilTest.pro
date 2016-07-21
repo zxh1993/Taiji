@@ -3,20 +3,20 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG -= qt
 
+
+
 LIBS += \
     -lPocoFoundation \
-    -lPocoUtil  \
-    -lgtest    		\
-    -lgtest_main   	\
-    -lpthread		\
-    -lTaijiExcept \
-    -lTaijiUtil
-
-
+    -lPocoUtil \
+    -lPocoNet \
+    -lPocoJSON \
+    -lTaijiUtil \
+    -lgtest \
+    -lgtest_main \
+    -lpthread \
 
 HEADERS += \
-    CUtilUnitTest.h \
+    CUtilTest.h
 
 SOURCES += \
-    CUtilUnitTest.cpp \
-
+    CUtilTest.cpp

@@ -20,7 +20,8 @@ INCLUDEPATH += \
 LIBS += \
     -lPocoFoundation \
     -lPocoNet \
-    -lpthread
+    -lPocoUtil \
+    -lpthread \
 
 unix {
     target.path = /usr/local/lib
