@@ -65,7 +65,6 @@ void CTimingThread::__run()
     }
     while(_started)
     {
-        _ptask->setup();
         _ptask->run();
         if (isWait)
         {

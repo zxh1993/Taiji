@@ -23,7 +23,6 @@ public:
     CTimingTask() = default;
     virtual ~CTimingTask() = default;
     virtual void start() = 0;
-    virtual void setup() = 0;
     virtual void run() = 0;
     virtual void stop() = 0;
     virtual int getCyclesTime() = 0;

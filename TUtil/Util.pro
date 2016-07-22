@@ -40,7 +40,8 @@ HEADERS += \
     CTimingThread.h \
     CHttpServer.h \
     CHTTPRequestHandlerFactory.h \
-    CServerApplication.h
+    CServerApplication.h \
+    CHTTPRequestHandler.h
 
 SOURCES += \
     CLog.cpp \
@@ -48,6 +49,7 @@ SOURCES += \
     CTimingThread.cpp \
     CHttpServer.cpp \
     CHTTPRequestHandlerFactory.cpp \
-    CServerApplication.cpp
+    CServerApplication.cpp \
+    CHTTPRequestHandler.cpp
 
 
