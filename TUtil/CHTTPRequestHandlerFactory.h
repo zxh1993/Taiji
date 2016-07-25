@@ -42,7 +42,7 @@ public:
 
 
     template <class Handler>
-    void addHandlerAndFun(const std::string &url, CHTTPRequestHandler::HANDLER fun)
+    void addHandlerAndFun(const std::string &url, HandlerRequest fun)
     {
         if (_map.end() == _map.find(url))
         {

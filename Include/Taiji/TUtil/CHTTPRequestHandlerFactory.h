@@ -14,7 +14,7 @@
 #include <map>
 #include <functional>
 #include "Taiji/TExcept/Except.h"
-
+#include "CHTTPRequestHandler.h"
 namespace Taiji {
 namespace TUtil {
 
@@ -32,6 +32,27 @@ public:
         if (_map.end() == _map.find(url))
         {
             _map.insert(std::make_pair(url, [](){return new Handler;}));
+        }
+        else
+        {
+            throw Taiji::ExceptTUtil("CHTTPRequestHandlerFactory " + url + " is exist!");
+        }
+
+    }
+
+
+    template <class Handler>
+    void addHandlerAndFun(const std::string &url, HandlerRequest fun)
+    {
+        if (_map.end() == _map.find(url))
+        {
+
+            _map.insert(std::make_pair(url, [=]()
+            {
+                Handler* h = new Handler;
+                h->setRealHandler(fun);
+                return h;
+            }));
         }
         else
         {

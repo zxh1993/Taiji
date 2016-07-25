@@ -8,7 +8,7 @@ void CHTTPRequestHandler::handleRequest(Poco::Net::HTTPServerRequest &request, P
     (this->*_realHandler)(request, response);
 }
 
-void CHTTPRequestHandler::setRealHandler(const HANDLER &realHandler)
+void CHTTPRequestHandler::setRealHandler(const HandlerRequest &realHandler)
 {
     _realHandler = realHandler;
 }

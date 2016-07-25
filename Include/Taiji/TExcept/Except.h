@@ -71,7 +71,8 @@ private:
 TAIJI_NEW_EXCEPTION(ExceptProtocal, Except);
 //TUtil模块的基类异常
 TAIJI_NEW_EXCEPTION(ExceptTUtil, Except);
-
+//业务模块的基类异常
+TAIJI_NEW_EXCEPTION(ExceptBusiness, Except);
 
 /////////////////////////////////////////////////////////////////////////////////
 
