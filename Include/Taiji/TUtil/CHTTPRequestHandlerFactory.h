@@ -35,14 +35,14 @@ public:
         }
         else
         {
-            throw Taiji::ExceptTUtil("CHTTPRequestHandlerFactory " + url + " is exist!");
+            throw Taiji::ExceptTUtil("CHTTPRequestHandlerFactory " + url + " is not exist!");
         }
 
     }
 
 
     template <class Handler>
-    void addHandlerAndFun(const std::string &url, HandlerRequest fun)
+    void addHandlerAndFun(const std::string &url, void (Handler::*fun) (Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response))
     {
         if (_map.end() == _map.find(url))
         {
@@ -50,13 +50,13 @@ public:
             _map.insert(std::make_pair(url, [=]()
             {
                 Handler* h = new Handler;
-                h->setRealHandler(fun);
+                h->setRealHandler(static_cast<CHTTPRequestHandler::HandlerRequest> (fun));
                 return h;
             }));
         }
         else
         {
-            throw Taiji::ExceptTUtil("CHTTPRequestHandlerFactory " + url + " is exist!");
+            throw Taiji::ExceptTUtil("CHTTPRequestHandlerFactory " + url + " is not exist!");
         }
 
     }

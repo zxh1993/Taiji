@@ -7,13 +7,10 @@
 namespace Taiji {
 namespace TUtil {
 
-class CHTTPRequestHandler;
-typedef void (CHTTPRequestHandler::*HandlerRequest) (Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
-
 class CHTTPRequestHandler : public Poco::Net::HTTPRequestHandler
 {
 public:
-
+    typedef void (CHTTPRequestHandler::*HandlerRequest) (Poco::Net::HTTPServerRequest& request, Poco::Net::HTTPServerResponse& response);
     CHTTPRequestHandler() = default;
     virtual ~CHTTPRequestHandler() = default;
 
