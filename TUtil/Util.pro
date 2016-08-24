@@ -24,10 +24,10 @@ LIBS += \
     -lpthread \
 
 unix {
-    target.path = /usr/local/lib
+    target.path = ../Lib
     INSTALLS += target
     headfile.files = *.h
-    headfile.path = /usr/local/include/Taiji/TUtil
+    headfile.path = ../Include/Taiji/TUtil
     INSTALLS += headfile
 }
 

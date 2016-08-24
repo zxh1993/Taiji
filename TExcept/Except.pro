@@ -20,7 +20,7 @@ INCLUDEPATH += \
 
 unix {
     headfile.files = *.h
-    headfile.path = /usr/local/include/Taiji/TExcept
+    headfile.path = ../Include/Taiji/TExcept
     INSTALLS += headfile
 }
 

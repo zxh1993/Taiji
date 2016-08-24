@@ -19,10 +19,10 @@ INCLUDEPATH += \
 
 
 unix {
-    target.path = /usr/local/lib
+    target.path = ../Lib
     INSTALLS += target
     headfile.files = *.h
-    headfile.path = /usr/local/include/Taiji/TRedis
+    headfile.path = ../Include/Taiji/TRedis
     INSTALLS += headfile
 }
 
