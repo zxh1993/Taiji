@@ -54,9 +54,9 @@ CLog::CLog(const std::string& dir, const std::string& file, const std::string& n
 
 std::string CLog::getLogNumber()
 {
-    ++_longNum;
+    long num = _longNum++;
     std::stringstream ss;
-    ss << _longNum;
+    ss << num;
     return ss.str();
 }
 
