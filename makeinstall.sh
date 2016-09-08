@@ -1,9 +1,7 @@
 #!/bin/bash
+mkdir -p build
 cd build
-sed -i '/^QMAKE/d' TExcept/Makefile*
-sed -i '/^QMAKE/d' TRedis/Makefile*
-sed -i '/^QMAKE/d' TUtil/Makefile*
-sed -i '/^QMAKE/d' Makefile*
+qmake ../Taiji.pro
 make clean
 make
 cd ..
