@@ -1,0 +1,5 @@
+#! /bin/sh
+
+rm Makefile
+qmake Taiji.pro -r -spec linux-g++-64
+

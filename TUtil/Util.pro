@@ -15,19 +15,14 @@ CONFIG += c++11
 DEFINES += \
 
 INCLUDEPATH += \
-    ../../
-
-LIBS += \
-    -lPocoFoundation \
-    -lPocoNet \
-    -lPocoUtil \
-    -lpthread \
+    ../../ \
+    /opt/devbus/poco/v1.6.0/include
 
 unix {
-    target.path = ../Lib
+    target.path = /opt/devbus/taiji/v1.0/lib
     INSTALLS += target
     headfile.files = *.h
-    headfile.path = ../Include/Taiji/TUtil
+    headfile.path = /opt/devbus/taiji/v1.0/include/Taiji/TUtil
     INSTALLS += headfile
 }
 
